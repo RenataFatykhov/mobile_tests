@@ -49,10 +49,11 @@ tasks.withType(JavaCompile) {
 }
 
 test {
-    def platform = System.getProperty("platform", "android")
-
     useJUnitPlatform {
-        includeTags(platform)
+        def platform = System.getProperty("platform")
+        if (platform) {
+            includeTags(platform)
+        }
     }
     systemProperties(System.getProperties())
 

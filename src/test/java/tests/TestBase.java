@@ -9,6 +9,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -24,7 +25,14 @@ public class TestBase {
     }
 
     @BeforeEach
-    void beforeEach() {
+    void beforeEach(TestInfo testInfo) {
+        String platform = testInfo.getTags().stream()
+                .filter(tag -> tag.equals("android") || tag.equals("ios"))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(
+                        "Each mobile test must be tagged with android or ios"));
+        System.setProperty("platform", platform);
+
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         open();
     }
@@ -37,5 +45,6 @@ public class TestBase {
         Attach.pageSource();
         Attach.addVideo(sessionId);
         closeWebDriver();
+        System.clearProperty("platform");
     }
 }
