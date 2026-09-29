@@ -11,10 +11,10 @@ public interface MobileConfig extends Config {
     @DefaultValue("android")
     String platform();
 
-    @Key("browserstack.user")
+    @Key("BROWSERSTACK_USER")
     String browserStackUser();
 
-    @Key("browserstack.key")
+    @Key("BROWSERSTACK_KEY")
     String browserStackKey();
 
     @Key("browserstack.url")
@@ -32,10 +32,10 @@ public interface MobileConfig extends Config {
     @Key("browserstack.appium.version")
     String appiumVersion();
 
-    @Key("android.device.name")
+    @Key("BROWSERSTACK_ANDROID_DEVICE")
     String androidDeviceName();
 
-    @Key("android.os.version")
+    @Key("BROWSERSTACK_ANDRIOD_OS_VERSION")
     String androidOsVersion();
 
     @Key("android.app")
@@ -44,10 +44,10 @@ public interface MobileConfig extends Config {
     @Key("android.automation.name")
     String androidAutomationName();
 
-    @Key("ios.device.name")
+    @Key("BROWSERSTACK_IOS_DEVICE")
     String iosDeviceName();
 
-    @Key("ios.os.version")
+    @Key("BROWSERSTACK_IOS_OS_VERSION")
     String iosOsVersion();
 
     @Key("ios.app")

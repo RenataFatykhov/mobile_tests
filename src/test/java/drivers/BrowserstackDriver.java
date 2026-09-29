@@ -17,7 +17,11 @@ import java.util.Locale;
 import java.util.Map;
 
 public class BrowserstackDriver implements WebDriverProvider {
-    private final MobileConfig config = ConfigFactory.create(MobileConfig.class, System.getProperties());
+    private final MobileConfig config = ConfigFactory.create(
+            MobileConfig.class,
+            System.getProperties(),
+            System.getenv()
+    );
 
     @Nonnull
     @Override
